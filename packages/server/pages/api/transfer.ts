@@ -72,11 +72,17 @@ export default async function (request: NextApiRequest, response: NextApiRespons
         response.status(200).send({ status: 'ok', signature });
     } catch (error) {
         let message = '';
+        let details: unknown = undefined;
         if (error instanceof Error) {
             message = error.message;
+            details = {
+                name: error.name,
+                message: error.message,
+                stack: error.stack?.split('\n').map(x => x?.trim()),
+            }
         }
-        console.warn('Error failed!');
+        console.warn('Transfer request failed!');
         console.warn(error);
-        response.status(400).send({ status: 'error', message });
+        response.status(400).send({ status: 'error', message, details });
     }
 }
