@@ -33,6 +33,7 @@ export async function validateTransfer(
     const account = await getAccount(connection, source.pubkey, 'confirmed');
     if (!account.owner.equals(owner.pubkey)) throw new Error('source invalid owner');
     if (account.isFrozen) throw new Error('source frozen');
+    console.log('account', account.amount, 'amount', amount);
     if (account.amount < amount) throw new Error('source insufficient balance');
 
     // Check that the source account's mint is one of the accepted tokens
