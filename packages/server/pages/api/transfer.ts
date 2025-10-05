@@ -60,6 +60,7 @@ export default async function (request: NextApiRequest, response: NextApiRespons
             ENV_SECRET_KEYPAIR.publicKey,
             Buffer.from(base58.decode(signature))
         );
+        console.log('added signature');
 
         await sendAndConfirmRawTransaction(
             connection,
@@ -74,6 +75,8 @@ export default async function (request: NextApiRequest, response: NextApiRespons
         if (error instanceof Error) {
             message = error.message;
         }
+        console.warn('Error failed!');
+        console.warn(error);
         response.status(400).send({ status: 'error', message });
     }
 }
