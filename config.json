@@ -1,5 +1,5 @@
 {
-    "rpcUrl": "https://api.devnet.solana.com",
+    "rpcUrl": "https://api.mainnet-beta.solana.com",
     "maxSignatures": 2,
     "lamportsPerSignature": 5000,
     "corsOrigin": ["http://localhost:3000", "http://cheque.localhost:3000", "https://dev.solana.post.cash", "https://solana.post.cash"],
